@@ -1,0 +1,40 @@
+[submodule "reference_data/rkbin"]
+	path = reference_data/rkbin
+	url = https://github.com/rockchip-linux/rkbin.git
+[submodule "tools/ghidra/processors/ghidra-xtensa"]
+	path = tools/ghidra/processors/ghidra-xtensa
+	url = git@github.com:dynacylabs/ghidra-xtensa.git
+	branch = master
+[submodule "tools/ghidra/extensions/ghidra-esp32-flash-loader"]
+	path = tools/ghidra/extensions/ghidra-esp32-flash-loader
+	url = git@github.com:dynacylabs/ghidra-esp32-flash-loader.git
+	branch = master
+[submodule "tools/ghidra/scripts/ghidra-rizzo"]
+	path = tools/ghidra/scripts/ghidra-rizzo
+	url = git@github.com:dynacylabs/ghidra-rizzo.git
+	branch = main
+[submodule "tools/ghidra/scripts/ghidra-gdt"]
+	path = tools/ghidra/scripts/ghidra-gdt
+	url = git@github.com:dynacylabs/ghidra-gdt.git
+	branch = main
+[submodule "tools/ghidra/scripts/ghidra-svd-loader"]
+	path = tools/ghidra/scripts/ghidra-svd-loader
+	url = https://github.com/dynacylabs/ghidra-svd-loader
+	branch = master
+[submodule "tools/esp32_image_parser"]
+	path = tools/esp32_image_parser
+	url = git@github.com:dynacylabs/esp32_image_parser.git
+[submodule "tools/esp-idf/esp-idf_elfs"]
+	path = tools/esp-idf/esp-idf_elfs
+	url = git@github.com:dynacylabs/esp-idf_elfs.git
+[submodule "tools/esp-idf/esp-idf_gdt"]
+	path = tools/esp-idf/esp-idf_gdt
+	url = git@github.com:dynacylabs/esp-idf_gdt.git
+	branch = main
+[submodule "tools/esp-idf/esp-idf_rizzo"]
+	path = tools/esp-idf/esp-idf_rizzo
+	url = git@github.com:dynacylabs/esp-idf_rizzo.git
+	branch = main
+[submodule "tools/rkdeveloptool"]
+	path = tools/rkdeveloptool
+	url = https://github.com/rockchip-linux/rkdeveloptool.git
