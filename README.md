@@ -22,8 +22,9 @@ A few submodules (`tools/esp-idf/esp-idf_elfs`, `tools/esp-idf/esp-idf_gdt`, `to
 - [hubs/](hubs) - one directory per hub product/revision: board photos, firmware dumps, Ghidra projects, serial logs
 - [sensors/](sensors) - one directory per sensor product/revision, same layout as hubs
 - [docs/](docs) - writeup, testing methodology, Ghidra setup notes, reference articles
+- [fcc_filings/](fcc_filings) - downloaded FCC certification filings per device, plus chip identification writeups sourced from their internal-photos exhibits
 - [reference_data/](reference_data) - vendor SVDs/ELFs/boot binaries shared across devices
-- [tools/](tools) - Ghidra plugins, esp-idf-based artifact generators, flashing tools, misc scripts
+- [tools/](tools) - Ghidra plugins, esp-idf-based artifact generators, flashing tools, misc scripts, `fccid_downloader`
 
 Each hardware directory has its own `README.md` describing what's there; `firmware/<name>/factory_state` is always the as-shipped dump, other names indicate OTA/intercepted updates.
 

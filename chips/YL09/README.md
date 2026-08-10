@@ -1,6 +1,10 @@
 # YL09 Info
 
-[Datasheet](https://www.yosmart.com/wp-content/uploads/userguide/YL09_SIP_Product-Specification.pdf) - block structure, pin information
+[Datasheet](https://www.yosmart.com/wp-content/uploads/userguide/YL09_SIP_Product-Specification.pdf) - block structure, pin information (also mirrored locally as [YL09_SIP_Product-Specification.pdf](YL09_SIP_Product-Specification.pdf))
+
+Confirmed present (by chip marking, via FCC internal-photos filings) in every sensor documented in this repo except [YS8003](../../sensors/YS8003), which uses a discrete STM32L073RBT6 + SX1276 instead - see [fcc_filings/](../../fcc_filings) for the per-device chip identification writeups this was sourced from.
+
+![YL09 chip, photographed for an FCC filing](images/yl09-chip-fcc-photo.png)
 
 ![image](https://github.com/user-attachments/assets/510a51b8-2b91-414c-a055-205d84e23803)
 

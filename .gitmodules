@@ -38,3 +38,6 @@
 [submodule "tools/rkdeveloptool"]
 	path = tools/rkdeveloptool
 	url = https://github.com/rockchip-linux/rkdeveloptool.git
+[submodule "tools/fccid_downloader"]
+	path = tools/fccid_downloader
+	url = git@github.com:dynacylabs/fccid_downloader.git
