@@ -26,4 +26,4 @@ Datasheet: [reference_data/datasheets/mediatek-mt7628nn.pdf](../../reference_dat
 ## LoRa Radio — likely LLCC68, unconfirmed
 ![Separate small LoRa daughter-card](images/lora-daughtercard.png)
 
-LoRa isn't on the main MediaTek board at all - it's a **separate small daughter card** with its own QFN radio chip, connected to the main board. Given YoLink used the Semtech LLCC68 on both other hubs in this repo, that's the most likely part here too, but the marking wasn't legible at the photo resolution available. Worth a second look with the physical hardware if you still have it.
+LoRa isn't on the main MediaTek board at all - it's a **separate small daughter card** with its own QFN radio chip, connected to the main board. Given YoLink used the Semtech LLCC68 on both other hubs in this repo, that's the most likely part here too. Re-examined at 1200dpi - the chip package itself shows no visible marking at all in FCC's source photo (not just blurry text, genuinely no legible print), and the daughter card's own silkscreen text is too blurred to read either. Not resolvable from this filing's photos; worth a second look with the physical hardware if you still have it.

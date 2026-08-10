@@ -13,7 +13,7 @@ With the module's shield removed, the internals are visible and individually mar
 ![WROVER internals: ESP32-D0WD-V3, GigaDevice flash, Espressif PSRAM](images/wrover-internals.png)
 
 - **Espressif ESP32-D0WD-V3** (marked `ESP32-D0WD V3 / 282021 / UE00P4P654`) — same silicon as the P1603 hub. Datasheet: [reference_data/datasheets/esp32-datasheet.pdf](../../reference_data/datasheets/esp32-datasheet.pdf)
-- **GigaDevice GD25Q64E** SPI NOR flash (marked `GigaDevice / 25Q64ESIG / C005806 / RJ2126`) — 64Mbit, twice the capacity of the flash on the P1603 board. Datasheet not successfully retrieved (every mirror tried required login or blocked scripted downloads) - see [reference_data/datasheets/README.md](../../reference_data/datasheets/README.md) for what was tried; product page: https://www.gigadevice.com/product/flash/spi-nor-flash/gd25q64e
+- **GigaDevice GD25Q64E** SPI NOR flash (marked `GigaDevice / 25Q64ESIG / C005806 / RJ2126`) — 64Mbit, twice the capacity of the flash on the P1603 board. Datasheet: [reference_data/datasheets/gigadevice-gd25q64e.pdf](../../reference_data/datasheets/gigadevice-gd25q64e.pdf)
 - **Espressif PSRAM64H** (marked `ESP / PSRAM64H / 182021 / 1500056`) — 64Mbit PSRAM, the reason this hub needed the WROVER module instead of a plain WROOM/bare-chip design. Datasheet: [reference_data/datasheets/espressif-psram64h.pdf](../../reference_data/datasheets/espressif-psram64h.pdf)
 
 ## LoRa Radio — Semtech LLCC68
@@ -24,4 +24,4 @@ Marked `LLCC68 / LoRa® / 1951 / 73124`. Same part as the P1603 hub - confirms Y
 Datasheet: [reference_data/datasheets/semtech-llcc68.pdf](../../reference_data/datasheets/semtech-llcc68.pdf)
 
 ## Not yet identified
-The audio amplifier/speaker driver circuitry (this is, after all, the *speaker* hub) wasn't isolated to a clearly-legible chip in the available photos - worth a closer look if higher-resolution photos or the physical board become available again.
+The audio amplifier/speaker driver circuitry (this is, after all, the *speaker* hub) - two SOIC-8 packages sit just left of the WROVER module and are the most likely candidates, but neither has a legible marking even at 1200dpi with sharpening. Genuinely out of focus in FCC's source photo, not a rasterization limit. Worth a closer look if the physical board becomes available again.

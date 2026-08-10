@@ -25,10 +25,12 @@ Marked `25VQ32BSIG / HD2133 / P2U292` (manufacturer prefix not fully legible in 
 
 Closest datasheet on file: [reference_data/datasheets/gigadevice-gd25q32c.pdf](../../reference_data/datasheets/gigadevice-gd25q32c.pdf) (same-density GD25Q32 family; the exact low-power "V" variant datasheet wasn't confirmed identical).
 
-## Ethernet Magnetics/Jack — HanRun HR911550A
-![HanRun HR911550A](images/hanrun-hr911550a.png)
+## Ethernet Magnetics/Jack — HanRun HR913550A
+![HanRun HR913550A](images/hanrun-hr913550a.png)
 
-Marked `HanRun / HR911550A / 2236`. Integrated RJ45 jack + magnetics module, standard part for Ethernet-equipped embedded boards - not a YoLink-specific or otherwise notable chip, included here for completeness since it's one of the larger/more visible components on the board.
+Marked `HanRun / HR913550A / 2236` (corrected - originally misread as "HR911550A" on first pass). Integrated RJ45 jack + magnetics module, standard part for Ethernet-equipped embedded boards - not a YoLink-specific or otherwise notable chip, included here for completeness since it's one of the larger/more visible components on the board.
+
+Datasheet: [reference_data/datasheets/hanrun-hr913550a.pdf](../../reference_data/datasheets/hanrun-hr913550a.pdf)
 
 ## Not identified
-A small QFN chip sits just left of the ESP32 module on the front of the board (visible in the wider board photos but not legible at the photo resolution FCC provides). Given its position and passives, it's plausibly a power-management IC (battery/USB charging or regulation) rather than anything RF-related, but this is unconfirmed.
+A small QFN chip sits just left of the ESP32 module on the front of the board. Given its position and passives, it's plausibly a power-management IC (battery/USB charging or regulation) rather than anything RF-related, but this is unconfirmed. Re-examined at 1200dpi with sharpening/contrast enhancement - the marking is genuinely out of focus in FCC's source photo, not a rasterization limit. Not resolvable without a better photo or the physical board.

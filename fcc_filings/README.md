@@ -18,5 +18,6 @@ FCC-filing internal photos were also the main source used to figure out purchase
 
 ## Still open
 - The real FCC ID for [P7805](../sensors/P7805) hasn't been found yet.
-- No filing identified yet for [P1606](../hubs/P1606) (its own, distinct device from P1605 - see above), [P0603](../chips/P0603) (may not need one independently - see its chip identification note), or the [YL09](../chips/YL09) chip itself.
+- No filing found for [P1606](../hubs/P1606) (its own, distinct device from P1605 - see above) despite a real search effort - see that device's README for what was tried. May use a modular LTE certification instead of a standalone device FCC ID, given it's YoLink's cellular-capable "Local Hub."
+- No filing identified for [P0603](../chips/P0603) (may not need one independently - see its chip identification note) or the [YL09](../chips/YL09) chip itself.
 - The full list of 60 FCC IDs under grantee `2ATM7` is much longer than what's been pulled here - only the devices already present in this repo were prioritized. Re-run `fccid_downloader` against any of the remaining IDs (see the FCC ID search link above) if a new device gets added.
