@@ -63,9 +63,10 @@ function registerType(type, dpClazz, decoderRegister, encoderRegister) {
 function register(decoderRegister, encoderRegister) {
   const {
     Lock, GarageDoor, Manipulator, MultiOutlet, BodySensor, LeakSensor, InfraredRemoter, THSensor,
-    Sprinkler, Thermostat, Finger, Siren, GasSmokeSensor, SmartRemoter, CSDevice, PowerFailureDetector,
+    Sprinkler, Thermostat, Finger, Siren, GasSmokeSensor, SmartRemoter, PowerFailureDetector,
     VibrationSensor, Dimmer, WaterDepthSensor, VapeSoundDetector,
-  } = require("./device-handlers/uncataloged-handlers"); // placeholder - these 20 classes aren't individually transcribed, see device-command-tables.md
+  } = require("./device-handlers/uncataloged-handlers"); // placeholder - these 19 classes aren't individually transcribed, see device-command-tables.md
+  const { CSDevice } = require("./device-handlers/cs-device"); // module 94837, fully transcribed
 
   registerType("doorSensor", DoorSensor, decoderRegister, encoderRegister);
   registerType("lock", Lock, decoderRegister, encoderRegister);
