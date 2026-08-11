@@ -39,17 +39,29 @@ class APIHandler {
   // nsDeviceType before forwarding to the device (e.g. a generic
   // "lock.getState" call always gets re-prefixed to match whichever
   // concrete device family this handler instance represents).
-  _sendDeviceMessage(req, res, extra) {
+  //
+  // CORRECTION: an earlier pass had this file's 2nd/3rd parameters
+  // swapped relative to the source (merging the wrong one into the
+  // outbound message, passing the wrong one as sendDeviceMessage's
+  // options/timeout argument). Fixed below - `extraFields` is Object.
+  // assign-merged into the outbound command (used by callers like
+  // hub-api-handler.js's scanWiFiList to override `method`),
+  // `options` (e.g. `{timeout}`) is passed straight through as
+  // general-client.js's Client.sendDeviceMessage's 3rd argument. Every
+  // call site elsewhere in this repo already called this with the
+  // correct (req, extraFields, options) order - only this
+  // implementation itself was wrong.
+  _sendDeviceMessage(req, extraFields, options) {
     let method = req.body.method;
     if (this.nsDeviceType != null) method = this.nsDeviceType + "." + method.split(".")[1];
     return new Promise((resolve, reject) => {
       this._getYoLinkConnector(req).sendDeviceMessage(
-        Object.assign({ method, params: req.body.params, targetDevice: req.body.targetDevice }, extra),
+        Object.assign({ method, params: req.body.params, targetDevice: req.body.targetDevice }, extraFields),
         (err, result) => {
           if (err) reject(err);
           else resolve(result);
         },
-        res
+        options
       );
     });
   }
