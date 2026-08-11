@@ -12,9 +12,21 @@ const { AppLifeCycle } = require("./app-lifecycle");
 // Thin wrapper around a small dependency-injection registry (di.get/
 // di.register). "subnet" and "gateway" are the two singleton objects
 // every device/message-handling module ultimately needs a handle to.
+//
+// CORRECTION: an earlier pass through this file assumed di.get() itself
+// took a throwIfMissing flag and threw internally - it doesn't (see
+// di-container.js: get() is a bare Map lookup, nothing more). The
+// "throws if not registered" behavior actually lives in this class's own
+// local getOrThrow() helper below, which wraps di.get().
+function getOrThrow(key, throwIfMissing = true) {
+  let value = di.get(key);
+  if (value == null && throwIfMissing) throw new Error(`Instance of ${key} not found`);
+  return value;
+}
+
 class AppContext {
   getContext(key) {
-    return di.get(key, /* throwIfMissing */ false);
+    return getOrThrow(key, false);
   }
 
   setContext(key, value) {
@@ -22,11 +34,11 @@ class AppContext {
   }
 
   getSubnet() {
-    return di.get("subnet", false);
+    return getOrThrow("subnet", false);
   }
 
   getGateway() {
-    return di.get("gateway", true); // throws if not yet registered
+    return getOrThrow("gateway", true); // throws if not yet registered
   }
 
   registerSubnet(subnet) {

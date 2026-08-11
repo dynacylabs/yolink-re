@@ -7,10 +7,12 @@
 // (alongside mqtt-local-broker.js's AUTH_TABLE and general-client.js's
 // "as" MQTT password) - a static issuer id + signing key for a
 // "default_api" internal issuer, present verbatim in every hub running
-// this firmware build. Not yet determined where InternalIssuers.
-// getAPIDefaultIssuer() is actually consumed - possibly dead code, or an
-// alternate/internal-only auth path not reachable through the OAuth2Provider
-// flow this pass examined.
+// this firmware build. CONFIRMED DEAD CODE: grepping every caller of
+// this module across the whole bundle turns up exactly two consumers
+// (oauth2-provider.js and http-api-wrapper.js), and both only use
+// LCSubnetTokenParser/JWTToken from it - neither references
+// InternalIssuers at all. Nothing in this firmware build actually calls
+// InternalIssuers.sharedInstance() or getAPIDefaultIssuer().
 
 const jwt = require("jsonwebtoken");
 
