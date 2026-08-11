@@ -5,21 +5,35 @@
 // encode-side and decode-side CommandRegister (lora-packet-codec.js's
 // DeviceDecoderRegister/DeviceEncoderRegister, aliased here as `e`/`t`)
 // under the LoraCAN protocol. Confirms the type-key string used
-// throughout the rest of the bundle (e.g. "CSDevice" - module 94837,
-// still not otherwise identified - is registered here exactly like every
-// other real device type, with no special-casing, which weakens the
-// "maybe it's just a generic fallback wrapper" theory from
-// device-command-tables.md).
+// throughout the rest of the bundle. Every class referenced here is now
+// fully hand-transcribed (see device-command-tables.md), including
+// "CSDevice" (module 94837) - registered here exactly like every other
+// real device type, with no special-casing, consistent with
+// cs-device.js's finding that it's a generic passthrough handler rather
+// than a distinct real device.
 
 const { Protocol } = require("./lora-packet-codec");
 const { DoorSensor } = require("./device-handlers/door-sensor");
-// The remaining device-handler modules (Lock, GarageDoor, Manipulator,
-// MultiOutlet, BodySensor, LeakSensor, InfraredRemoter, THSensor,
-// Sprinkler, Thermostat, Finger, Siren, GasSmokeSensor, SmartRemoter,
-// CSDevice, PowerFailureDetector, VibrationSensor, Dimmer,
-// WaterDepthSensor, VapeSoundDetector) are cataloged but not
-// hand-transcribed - see device-command-tables.md for their full opcode
-// tables and original module IDs.
+const { Lock } = require("./device-handlers/lock");
+const { GarageDoor } = require("./device-handlers/garage-door");
+const { Manipulator } = require("./device-handlers/manipulator");
+const { MultiOutlet } = require("./device-handlers/multi-outlet");
+const { BodySensor } = require("./device-handlers/body-sensor");
+const { LeakSensor } = require("./device-handlers/leak-sensor");
+const { InfraredRemoter } = require("./device-handlers/infrared-remoter");
+const { THSensor } = require("./device-handlers/th-sensor");
+const { Sprinkler } = require("./device-handlers/sprinkler");
+const { Thermostat } = require("./device-handlers/thermostat");
+const { Finger } = require("./device-handlers/finger");
+const { Siren } = require("./device-handlers/siren");
+const { GasSmokeSensor } = require("./device-handlers/gas-smoke-sensor");
+const { SmartRemoter } = require("./device-handlers/smart-remoter");
+const { CSDevice } = require("./device-handlers/cs-device");
+const { PowerFailureDetector } = require("./device-handlers/power-failure-detector");
+const { VibrationSensor } = require("./device-handlers/vibration-sensor");
+const { Dimmer } = require("./device-handlers/dimmer");
+const { WaterDepthSensor } = require("./device-handlers/water-depth-sensor");
+const { VapeSoundDetector } = require("./device-handlers/vape-sound-detector");
 
 class DeviceTypeRegistration {
   dpClazz;
@@ -61,13 +75,6 @@ function registerType(type, dpClazz, decoderRegister, encoderRegister) {
 // registers - see message-dispatcher.js / app.js's loadAllAppTasks for
 // where this actually gets called during startup.
 function register(decoderRegister, encoderRegister) {
-  const {
-    Lock, GarageDoor, Manipulator, MultiOutlet, BodySensor, LeakSensor, InfraredRemoter, THSensor,
-    Sprinkler, Thermostat, Finger, Siren, GasSmokeSensor, SmartRemoter, PowerFailureDetector,
-    VibrationSensor, Dimmer, WaterDepthSensor, VapeSoundDetector,
-  } = require("./device-handlers/uncataloged-handlers"); // placeholder - these 19 classes aren't individually transcribed, see device-command-tables.md
-  const { CSDevice } = require("./device-handlers/cs-device"); // module 94837, fully transcribed
-
   registerType("doorSensor", DoorSensor, decoderRegister, encoderRegister);
   registerType("lock", Lock, decoderRegister, encoderRegister);
   registerType("garageDoor", GarageDoor, decoderRegister, encoderRegister);

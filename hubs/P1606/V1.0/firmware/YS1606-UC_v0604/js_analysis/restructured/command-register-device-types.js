@@ -12,8 +12,8 @@
 // product numbers (5006, 5007, 5008, 5009, 5018), not three.
 
 const { Protocol } = require("./lora-packet-codec");
-const { P5006Register, P5007Register, P5009Register } = require("./device-handlers/water-meter-family"); // module 85430, cataloged in device-command-tables.md, not hand-transcribed
-const { P5029Register } = require("./device-handlers/p5029-register"); // module 18838, cataloged in device-command-tables.md, not hand-transcribed
+const { P5006Register, P5007Register, P5009Register } = require("./device-handlers/p5006-p5007-p5009-register"); // module 85430, fully transcribed
+const { P5029Register } = require("./device-handlers/p5029-register"); // module 18838, fully transcribed
 
 function register(decoderRegister, encoderRegister) {
   P5006Register.apply(Protocol.LoraCAN, "5006", encoderRegister, decoderRegister);
