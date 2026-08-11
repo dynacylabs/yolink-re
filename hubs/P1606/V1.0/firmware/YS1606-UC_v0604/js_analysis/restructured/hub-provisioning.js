@@ -13,9 +13,9 @@
 const { simpleMD5 } = require("./crypto-utils"); // original module 25518
 const jwt = require("jsonwebtoken"); // original module 49704 - this IS the real npm `jsonwebtoken` package
 const fs = require("fs");
-const { getGpioLed } = require("./gpio-leds"); // original module 17729, not yet transcribed - see README
+const { getGpioLed } = require("./gpio-leds"); // original module 17729
 const { waitForTask } = require("./async-utils"); // original module 9144
-const { System } = require("./system-info"); // original module 62984, not yet transcribed - see README
+const { System } = require("./system-info"); // original module 62984
 const { GatewayProfileRepository } = require("./gateway-profile-repository");
 
 const REGISTRATION_MODEL = "1606";

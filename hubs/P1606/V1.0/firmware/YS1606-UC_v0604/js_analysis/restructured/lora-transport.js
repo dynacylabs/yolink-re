@@ -11,7 +11,7 @@
 // native binary elsewhere in the firmware image.
 
 const { getLoraDriverConfig } = require("./config");
-const { MessageQueueClient } = require("./message-queue-client"); // original module 48409, not yet transcribed - see README
+const { MessageQueueClient } = require("./message-queue-client"); // original module 48409
 
 // Base class (original module 48409's MessagePipe/MessageQueueClient, not
 // yet transcribed - see README) is assumed to define sendMessage() and an

@@ -10,7 +10,7 @@
 //   22  (0x16) getVersion     23  (0x17) getState  39 (0x27) setOpenRemind
 // State byte values: 0=closed 1=open 2=error 3=open+alert("openRemind")
 
-const { DataPacket } = require("./data-packet"); // original module 78940
+const { DataPacket } = require("../data-packet"); // original module 78940
 
 class DoorSensor extends DataPacket {
   constructor(rawData) {

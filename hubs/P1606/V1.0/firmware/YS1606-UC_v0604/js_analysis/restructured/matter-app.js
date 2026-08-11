@@ -15,11 +15,11 @@
 // bundle (see the README's Findings section).
 
 const { exec } = require("child_process");
-const { MatterRPCClient } = require("./matter-rpc-client"); // module 76630, not yet transcribed
-const { YLSubnetSettingsRepository } = require("./yl-subnet-settings-repository"); // module 75587, not yet transcribed
+const { MatterRPCClient } = require("./matter-rpc-client");
+const { YLSubnetSettingsRepository } = require("./yl-subnet-settings-repository");
 const { getLogger } = require("./logger");
 const fs = require("fs");
-const { delayMs } = require("./delay-ms"); // module 9144, not yet transcribed
+const { delayMs } = require("./delay-utils");
 
 const DEFAULT_PASSCODE = 11111111;
 

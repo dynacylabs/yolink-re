@@ -9,8 +9,8 @@
 // provisioning (see gateway-key-event.js's AP-mode trigger).
 
 const { Router, json } = require("express");
-const { getNetDevDetails, getNetworkConnectivity, getWifiList, connectWifi } = require("./nmcli-network-status"); // module 69113, not yet transcribed
-const { signalQualityToDbm } = require("./signal-quality"); // module 23712, not yet transcribed
+const { getNetDevDetails, getNetworkConnectivity, getWifiList, connectWifi } = require("./network-status");
+const { signalQualityToDbm } = require("./signal-quality");
 
 const router = Router();
 

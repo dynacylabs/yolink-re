@@ -7,7 +7,7 @@
 // on every boot.
 
 const { getGatewayBaseConfig } = require("./config");
-const { LocalStorageItem } = require("./local-storage-item"); // original module 2746, not yet transcribed - see README
+const { LocalStorageItem } = require("./local-storage-item"); // original module 2746
 const { fetchGatewayConfiguration } = require("./hub-provisioning");
 
 class GatewayProfileRepository extends LocalStorageItem {

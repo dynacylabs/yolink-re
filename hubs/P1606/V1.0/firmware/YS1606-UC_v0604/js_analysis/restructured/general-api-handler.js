@@ -18,7 +18,7 @@ const { LCSubnetAuth } = require("./lcsubnet-auth");
 const { APIHandler } = require("./api-handler-base");
 const { SignSecret } = require("./sign-secret");
 const { deviceNsTypeFromAppEUI } = require("./device-type-from-appeui");
-const { YLSubnetDevicesRepository } = require("./yl-subnet-devices-repository"); // module 65016, not yet transcribed
+const { YLSubnetDevicesRepository } = require("./yl-subnet-devices-repository");
 const { translateNSType } = require("./message-dispatcher");
 
 function getSubnetDevices() {

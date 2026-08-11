@@ -4,8 +4,8 @@
 // default /var/lib/yosmart/p1606_local.db) using Node's newer built-in
 // `node:sqlite` module (DatabaseSync) rather than a third-party driver.
 // Schema migrations are just numbered .sql files under an "assets/tables"
-// directory (see getAssets in the README's "not yet transcribed" list,
-// module 38965), applied in order and tracked in a `db_version` table.
+// directory (see getAssets in assets-path.js, module 38965), applied in
+// order and tracked in a `db_version` table.
 
 const { DatabaseSync } = require("node:sqlite");
 const fs = require("fs");

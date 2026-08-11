@@ -11,7 +11,7 @@
 // rather than knowing about the transport underneath.
 
 const { InterfaceError } = require("./errors");
-const { DeviceProxy } = require("./device-proxy"); // original module 62533, not yet transcribed - see README
+const { DeviceProxy } = require("./device-proxy"); // original module 62533
 
 // Maps YoLink's internal namespace-type strings (as seen in BSDP `type`
 // fields and API method prefixes) to the human-readable device-class names
@@ -60,7 +60,7 @@ class HandlerDispatcher {
   }
 
   #loadHandlers() {
-    const { registerHandlers } = require("./device-type-registry"); // original module 14062, not yet transcribed - see README
+    const { registerHandlers } = require("./device-type-registry"); // original module 14062
     registerHandlers(this.#handlers);
   }
 

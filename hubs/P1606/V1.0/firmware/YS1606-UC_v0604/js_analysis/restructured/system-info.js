@@ -5,8 +5,8 @@
 // registerHub() - it's an MD5 hash derived from the CPU serial and eMMC
 // CID, not a value burned in at the factory or read from a secure element.
 
-const { cli } = require("./shell-exec"); // original module 67043, not yet transcribed - see README
-const { UpgradeTask } = require("./upgrade-task"); // original module 88196, not yet transcribed - see README
+const { cli } = require("./shell-exec"); // original module 67043
+const { UpgradeTask } = require("./upgrade-task"); // original module 88196
 const { simpleMD5 } = require("./crypto-utils");
 
 class System {

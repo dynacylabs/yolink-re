@@ -11,8 +11,8 @@
 // BSDP for that device.
 
 const { pick, map, isEqual } = require("./lodash-utils"); // original module 74979 - a handful of individual lodash function imports
-const { GeneralTaskList } = require("./general-task-list"); // original module 43010, not yet transcribed - see README
-const { checkTimeValid } = require("./automation-time-window"); // original module 41742, not yet transcribed - see README
+const { GeneralTaskList } = require("./general-task-list"); // original module 43010
+const { checkTimeValid } = require("./automation-time-window"); // original module 41742
 
 // Compares one dotted/bracketed field path (e.g. "battery" or
 // "door[open]") between two state objects, and separately tracks a cached

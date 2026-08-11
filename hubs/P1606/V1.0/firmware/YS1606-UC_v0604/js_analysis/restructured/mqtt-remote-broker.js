@@ -21,7 +21,7 @@
 
 const mqtt = require("mqtt");
 const { handleCommand } = require("./hub-remote-commands");
-const { onProtoLoraDownlinkMessage } = require("./lora-downlink-handler"); // original module 35003, not yet transcribed
+const { onProtoLoraDownlinkMessage } = require("./lora-downlink-handler");
 
 let mqttClient = undefined;
 let pendingSubscriptions = new Set();

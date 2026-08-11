@@ -6,8 +6,8 @@
 // just YoLink's own app/cloud protocol.
 
 const { YLTask } = require("../app-lifecycle");
-const { YLSubnetSettingsRepository } = require("../yl-subnet-settings-repository"); // original module 75587, not yet transcribed - see README
-const { MatterApp } = require("../matter-app"); // original module 91373, not yet transcribed - see README
+const { YLSubnetSettingsRepository } = require("../yl-subnet-settings-repository"); // original module 75587
+const { MatterApp } = require("../matter-app"); // original module 91373
 
 module.exports.default = function registerMatterSupport(lifecycle) {
   lifecycle.addTask(

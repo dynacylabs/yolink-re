@@ -7,11 +7,11 @@
 // commands, translates between ChirpStack's protobuf uplink format and
 // YoLink's own JSON shape, and forwards into the message-dispatcher bus.
 
-const { setupInternalDispatcher } = require("./internal-dispatcher-setup"); // original module 41073, not yet transcribed - see README
-const { deviceEnqueue } = require("./chirpstack-grpc-client"); // original module 70135
+const { setupInternalDispatcher } = require("./device-pipe"); // original module 41073
+const { deviceEnqueue } = require("./chirpstack-grpc-client"); // original module 70135, generated gRPC client - vendor, not transcribed
 const { publishLocalMessage, MqttSubscriber } = require("./mqtt-local-broker");
-const { UplinkEvent } = require("./chirpstack-integration-proto"); // original module 80608 (jspb-generated) - not transcribed, vendor
-const { parseLorawan2LegacyLoraJson, parseLorawan2YSStd } = require("./lorawan-event-translation"); // original module 58877, not yet transcribed - see README
+const { UplinkEvent } = require("./chirpstack-integration-proto"); // original module 80608 (jspb-generated) - vendor, not transcribed
+const { parseLorawan2LegacyLoraJson, parseLorawan2YSStd } = require("./lorawan-json-codec"); // original module 58877
 
 class LoraServerPipe {
   #internalDispatcher;

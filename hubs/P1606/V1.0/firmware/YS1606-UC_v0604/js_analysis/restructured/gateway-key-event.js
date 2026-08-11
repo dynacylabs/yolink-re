@@ -13,7 +13,7 @@
 //   - held >30s while still down: auto-destroys the press tracker.
 
 const { getGpioLed } = require("./gpio-leds");
-const { wifiStartHotspot, wifiStopHotspot } = require("./nmcli-wifi-hotspot"); // module 69113, not yet transcribed
+const { wifiStartHotspot, wifiStopHotspot } = require("./network-status");
 const { LoraClient } = require("./lora-transport");
 
 const gatewayLocalState = {

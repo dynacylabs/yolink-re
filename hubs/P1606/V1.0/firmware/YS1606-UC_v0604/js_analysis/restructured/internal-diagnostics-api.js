@@ -1,19 +1,18 @@
 // Original webpack module: 26807
 //
 // A localhost/LAN-only diagnostics HTTP endpoint mounted at /_internal on
-// the hub's Express app (see http-server.js, not yet transcribed - the
-// app itself hasn't been located/examined in this pass). Gated by a
-// hostname check (127.0.0.1 or 192.168.*) rather than any auth token -
-// reachable by anything on the same LAN segment as the hub, not just the
-// hub process itself.
+// the hub's Express app (see http-server.js for the actual app
+// creation/listen call). Gated by a hostname check (127.0.0.1 or
+// 192.168.*) rather than any auth token - reachable by anything on the
+// same LAN segment as the hub, not just the hub process itself.
 
 const { Router } = require("express");
-const { YLSubnetDevicesRepository } = require("./yl-subnet-devices-repository"); // module 65016, not yet transcribed
+const { YLSubnetDevicesRepository } = require("./yl-subnet-devices-repository");
 const { deviceNsTypeFromAppEUI } = require("./device-type-from-appeui");
 const { getGatewayBaseConfig } = require("./config");
 const { YLDeviceStateRepository } = require("./device-state-repository");
 const { System } = require("./system-info");
-const { AppCtxAttrs } = require("./app-context-attrs"); // module 3721, not yet transcribed
+const { AppCtxAttrs } = require("./app-context-attrs");
 
 const router = Router();
 

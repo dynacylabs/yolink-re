@@ -19,7 +19,7 @@ const { GeneralTaskList } = require("./general-task-list");
 const { StateComparator } = require("./automation"); // original module 5216
 const { loadState } = require("./device-state-store"); // original module 62937
 const { getByTriggerKey } = require("./automation-repository"); // original module 69159
-const { getGeneralClient } = require("./general-client"); // module 30523, not yet transcribed
+const { getGeneralClient } = require("./general-client"); // module 30523
 const SunCalc = require("./suncalc"); // original module 18442 -> 33042, vendor
 
 async function handleAutomation(deviceState) {

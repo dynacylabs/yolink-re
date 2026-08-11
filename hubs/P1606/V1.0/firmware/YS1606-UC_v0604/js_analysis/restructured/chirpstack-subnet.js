@@ -7,10 +7,11 @@
 // whatever this hub's own subnet-membership list says should exist. All
 // of `createTenant`/`createApplication`/`createDeviceProfile`/
 // `createDevice`/`createDeviceKeys`/`listDevices` etc. (imported from
-// "./chirpstack-grpc-client", original module 70135, not yet transcribed
-// - see README) are calls into ChirpStack's own gRPC API using the
-// generated client stubs bundled elsewhere in this JS file (the large
-// `proto.api.*` modules identified during triage - see README).
+// "./chirpstack-grpc-client", original module 70135, generated gRPC
+// client code - vendor, intentionally not hand-transcribed) are calls
+// into ChirpStack's own gRPC API using the generated client stubs
+// bundled elsewhere in this JS file (the large `proto.api.*` modules
+// identified during triage - see README).
 //
 // In other words: this Node process isn't just "using something a bit
 // like ChirpStack" - it's actively managing a real ChirpStack server's
@@ -20,7 +21,7 @@
 const { DeviceProfile, CreateDeviceProfileRequest, Device, CreateDeviceRequest } = require("./chirpstack-proto"); // original modules 88747 / 94444 (jspb-generated), not transcribed
 const { Region, MacVersion, RegParamsRevision } = require("./chirpstack-proto-enums"); // original module 20545
 const chirpstack = require("./chirpstack-grpc-client"); // original module 70135
-const { LoraServerPipe } = require("./loraserver-pipe"); // original module 10838, not yet transcribed - see README
+const { LoraServerPipe } = require("./loraserver-pipe"); // original module 10838
 const { YLSubnetDevicesRepository } = require("./yl-subnet-devices-repository"); // original module 65016
 
 const DEVICE_CLASSES = ["A", "C", "D"];

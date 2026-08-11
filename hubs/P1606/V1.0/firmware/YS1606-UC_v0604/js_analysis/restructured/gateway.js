@@ -4,13 +4,15 @@
 // being a LoRa gateway: reporting key/button events, connecting the local
 // AP/network state to the wider hub-management flow, and bridging to
 // remote/cloud MQTT. Most of the actual work is delegated to three
-// modules not yet transcribed in this pass (56359, 36248, 65446) - see
-// README.
+// modules - the uplink dispatcher (gateway-lora-receive.js, module
+// 36248), the physical button state machine (gateway-key-event.js,
+// module 56359), and the cloud MQTT bridge (mqtt-remote-broker.js,
+// module 65446) - all fully transcribed.
 
 const { getLogger } = require("./logger");
-const { bindGatewayLora } = require("./gateway-lora-binding"); // original module 36248, not yet transcribed - see README
-const { bindGatewayKeyEvent, getGatewayLocalState, gatewayStopApMode } = require("./gateway-key-events"); // original module 56359, not yet transcribed - see README
-const { connectMqttClient, connectToSubNet, publishSubnetRemoteMessage, isRemoteMqttConnected } = require("./gateway-mqtt-bridge"); // original module 65446, not yet transcribed - see README
+const { bindGatewayLora } = require("./gateway-lora-receive");
+const { bindGatewayKeyEvent, getGatewayLocalState, gatewayStopApMode } = require("./gateway-key-event");
+const { connectMqttClient, connectToSubNet, publishSubnetRemoteMessage, isRemoteMqttConnected } = require("./mqtt-remote-broker");
 
 class Gateway {
   gwId;

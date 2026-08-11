@@ -8,7 +8,7 @@
 // server if needed, and provision ChirpStack via YLSubnet.preset().
 
 const { YLTask } = require("../app-lifecycle");
-const { YLSubnetInfoRepository } = require("../yl-subnet-info-repository"); // original module 86429, not yet transcribed - see README
+const { YLSubnetInfoRepository } = require("../yl-subnet-info-repository"); // original module 86429
 const { checkServerVersion, checkServerState } = require("../loraserver-process-control");
 const { checkServerConfig } = require("../loraserver-config-writer"); // original module 39054
 const { YLSubnet } = require("../chirpstack-subnet");

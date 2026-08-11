@@ -103,26 +103,39 @@ function setupBase() {
 }
 
 // ---- loadAllAppTasks (original module 65559) ----
-// Registers every "onInit"/"onReady" task from across the bundle onto one
-// AppLifeCycle, then builds the final nested YLTaskGroup tree. See
-// task-registrations.js for what each of these seven registration
-// functions actually adds.
+// Registers every "onInit"/"onReady"/"onPreset" task from across the
+// bundle onto one AppLifeCycle, then builds the final nested YLTaskGroup
+// tree. Call order and module IDs below are verified directly against
+// the original bundle's requires for this function, not guessed.
+//
+// CORRECTION: an earlier pass through this file guessed that a 7th
+// registration here was "start-p1605-bridge" (module 95428), based on
+// context (yolink-hub.js's P1605-bridge regex) rather than the module's
+// actual content. Having since examined module 95428 directly, it's
+// task-registrations/load-remote-data.js - syncing gateway config/subnet
+// info/subnet devices on "onPreset" - nothing about P1605 bridging.
+// There's no dedicated "P1605 bridge task registration" module; the
+// bridging behavior lives entirely in yolink-hub.js's own logic. Also
+// corrected: module 75090 isn't the SQLite-init task itself (that's
+// module 63738 - see init-sqlite.js) - it's a combinator that calls both
+// init-sqlite.js's and start-schedule.js's registrations together (see
+// init-sqlite-and-schedule.js).
 function loadAllAppTasks(lifecycle = AppLifeCycle.shared()) {
-  const registerSqliteTask = require("./task-registrations/init-sqlite").default; // module 75090
   const registerHttpMqttServers = require("./task-registrations/start-http-mqtt").default; // module 23969
+  const registerSqliteAndSchedule = require("./task-registrations/init-sqlite-and-schedule").default; // module 75090
+  const registerLoadRemoteData = require("./task-registrations/load-remote-data").default; // module 95428
   const registerLocalGateway = require("./task-registrations/start-local-gateway").default; // module 11292
   const registerLoraServerSubnet = require("./task-registrations/start-loraserver-subnet").default; // module 18784
-  const registerMatterRpc = require("./task-registrations/start-matter").default; // module 3706
   const registerLoraModuleConnect = require("./task-registrations/connect-lora-module").default; // module 45844 -> 39377
-  const registerP1605Bridge = require("./task-registrations/start-p1605-bridge").default; // module 95428, not yet transcribed - see README
+  const registerMatterRpc = require("./task-registrations/start-matter").default; // module 3706
 
   registerHttpMqttServers(lifecycle);
-  registerMatterRpc(lifecycle);
-  registerLoraServerSubnet(lifecycle);
+  registerSqliteAndSchedule(lifecycle);
+  registerLoadRemoteData(lifecycle);
   registerLocalGateway(lifecycle);
+  registerLoraServerSubnet(lifecycle);
   registerLoraModuleConnect(lifecycle);
-  registerSqliteTask(lifecycle);
-  registerP1605Bridge(lifecycle);
+  registerMatterRpc(lifecycle);
 
   return lifecycle.buildTask();
 }
@@ -130,7 +143,7 @@ function loadAllAppTasks(lifecycle = AppLifeCycle.shared()) {
 // ---- the bundle's actual entry point ----
 // (original: the final IIFE in index.js, after __webpack_modules__)
 async function main() {
-  const { startLoop } = require("./ate-mode-status-loop"); // module 68213, not yet transcribed - see README
+  const { startLoop } = require("./status-loop"); // module 68213
 
   global.app = app;
   setupBase();

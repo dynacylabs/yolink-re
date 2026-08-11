@@ -22,14 +22,15 @@
 //
 // Downlink direction: subscribes to this gateway's own "tx" topic on the
 // local broker and hands anything received there to
-// onProtoLoraDownlinkMessage (module 35003, not yet transcribed) - the
-// same handler mqtt-remote-broker.js calls for cloud-originated downlinks.
+// onProtoLoraDownlinkMessage (lora-downlink-handler.js, module 35003) -
+// the same handler mqtt-remote-broker.js calls for cloud-originated
+// downlinks.
 
 const { getMetadataFromLoraUplink } = require("./lora-uplink-metadata");
 const { parseJSON2Proto } = require("./gateway-proto-codec");
 const { publishLocalMessage, MqttSubscriber } = require("./mqtt-local-broker");
 const { publishRemoteMessage } = require("./mqtt-remote-broker");
-const { onProtoLoraDownlinkMessage } = require("./lora-downlink-handler"); // original module 35003, not yet transcribed
+const { onProtoLoraDownlinkMessage } = require("./lora-downlink-handler");
 
 function handleUplink(gateway, uplink) {
   var phyPayload = Buffer.from(uplink.phyPayload, "base64");

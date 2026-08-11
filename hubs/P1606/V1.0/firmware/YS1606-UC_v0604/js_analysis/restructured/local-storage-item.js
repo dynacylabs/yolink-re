@@ -8,7 +8,7 @@
 // YLSubnetDevicesRepository, YLDeviceStateRepository, etc.) - each just
 // passes a different `type` string to partition its rows.
 
-const { MemoryCache } = require("./memory-cache"); // original module 80643, not yet transcribed - see README
+const { MemoryCache } = require("./memory-cache"); // original module 80643
 const { SqlFactory } = require("./sqlite-storage");
 const crypto = require("crypto");
 

@@ -6,10 +6,10 @@
 // message handling, per-device automation ("logics"), and forwarding
 // replies back to whichever app/cloud client is waiting on them.
 
-const { Device } = require("./device-base"); // original module 70868, not yet transcribed - see README
+const { Device } = require("./device-base"); // original module 70868
 const { YoLinkDeviceEventManager } = require("./device-event-manager");
 const { LoraUpLinkDataPacket, LoraDownlinkDataPacket } = require("./lora-packet-codec");
-const { NSDownlinkWraper } = require("./ns-downlink-wrapper"); // original module 70409, not yet transcribed - see README [sic] "Wraper"
+const { NSDownlinkWraper } = require("./ns-downlink-wrapper"); // original module 70409 [sic] "Wraper"
 const { CallbackPools } = require("./callback-pools");
 const { saveState } = require("./device-state-store"); // original module 62937
 const { DeviceAutomation } = require("./automation"); // original module 57926
@@ -104,7 +104,7 @@ class YoLinkDevice extends Device {
 
   async loadLogics() {
     logger.info("load automation of client:%s", this.deviceId);
-    const logicConfigs = await getDeviceLogics(this.deviceId); // original module 69159, not yet transcribed - see README
+    const logicConfigs = await getDeviceLogics(this.deviceId); // original module 69159
     this.clearLogics();
     logicConfigs.forEach((config) => {
       try {

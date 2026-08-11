@@ -16,14 +16,14 @@
 
 const { YLAutomationRepository } = require("./automation-repository");
 const { v4: uuidv4 } = require("uuid");
-const { YLSubnetDevicesRepository } = require("./yl-subnet-devices-repository"); // module 65016, not yet transcribed
+const { YLSubnetDevicesRepository } = require("./yl-subnet-devices-repository");
 const { YLSubnetInfoRepository } = require("./yl-subnet-info-repository");
 const { publishLocalMessage } = require("./mqtt-local-broker");
-const { getWifiList, connectWifi } = require("./nmcli-wifi"); // module 69113, not yet transcribed
+const { getWifiList, connectWifi } = require("./network-status");
 const { MatterApp } = require("./matter-app");
-const { YLSubnetSettingsRepository } = require("./yl-subnet-settings-repository"); // module 75587, not yet transcribed
+const { YLSubnetSettingsRepository } = require("./yl-subnet-settings-repository");
 const { System } = require("./system-info");
-const { signalQualityToDbm } = require("./signal-quality"); // module 23712, not yet transcribed
+const { signalQualityToDbm } = require("./signal-quality");
 const { SignSecret } = require("./sign-secret");
 const { simpleMD5 } = require("./crypto-utils");
 const { publishRemoteMessage } = require("./mqtt-remote-broker");

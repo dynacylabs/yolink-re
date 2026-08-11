@@ -7,7 +7,7 @@
 // getOrCreateYoLinkDevice call into on a cache miss.
 
 const { deviceNsTypeFromAppEUI } = require("./device-type-from-appeui"); // original module 96324
-const { newYoLinkDeviceSessionFromDB, newYoLinkDeviceSessionWithType } = require("./device-session-store"); // original module 76802, not yet transcribed - see README
+const { newYoLinkDeviceSessionFromDB, newYoLinkDeviceSessionWithType } = require("./device-session-store"); // original module 76802
 const { YoLinkHubSession } = require("./device-session");
 const { YoLinkDevice } = require("./yolink-device");
 const { YoLinkHub } = require("./yolink-hub");
