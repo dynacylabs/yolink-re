@@ -79,3 +79,6 @@ Flash Info:
 - Note this will be a 32G file
 
 https://www.armbian.com/orangepi3b/
+
+## Application logic (JavaScript)
+The hub's own application logic ships as a webpack-bundled Node.js app (`firmware/YS1606-UC_v0604/usr/lib/p1606/p1606mq-dev.tar.gz`). See [`firmware/YS1606-UC_v0604/js_analysis/`](firmware/YS1606-UC_v0604/js_analysis/README.md) for a renamed/restructured, human-readable version of the core app logic and what it revealed - including hard confirmation that this hub runs a real embedded **ChirpStack** instance, the hub's cloud-registration flow, hardcoded local MQTT broker credentials, and evidence it's built to bridge older YoLink hubs (specifically P1605) into itself.
