@@ -3,3 +3,4 @@ hubs/P1606/V1.0/firmware/YS1606-UC_v0604/YS1606-UC_v0604.bin.xz
 __pycache__/
 *.pyc
 .DS_Store
+.mcp.json
