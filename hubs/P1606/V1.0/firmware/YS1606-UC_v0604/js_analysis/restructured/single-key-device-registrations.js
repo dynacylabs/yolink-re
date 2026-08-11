@@ -5,7 +5,7 @@
 // multiple keys with one handler class).
 const { Protocol } = require("./lora-packet-codec");
 const { OutletRegister } = require("./device-handlers/outlet-register"); // module 69987, cataloged in device-command-tables.md
-const { SwitchRegister } = require("./device-handlers/switch-register"); // module 11039, cataloged in device-command-tables.md
+const { SwitchRegister } = require("./device-handlers/switch-register"); // module 11039, fully transcribed
 const { P5005Register } = require("./device-handlers/p5005-register"); // module 78025, cataloged in device-command-tables.md
 
 function registerOutlet(decoderRegister, encoderRegister) { // original module 10426

@@ -41,3 +41,6 @@
 [submodule "tools/fccid_downloader"]
 	path = tools/fccid_downloader
 	url = git@github.com:dynacylabs/fccid_downloader.git
+[submodule "tools/gaia"]
+	path = tools/gaia
+	url = git@github.com:dynacylabs/gaia.git

@@ -10,7 +10,7 @@ Two coexisting patterns, per `js_analysis/README.md`:
 |---|---|---|---|---|
 | DoorSensor | [46678](restructured/device-handlers/door-sensor.js) | 108 | DataPacket | 129→StatusChange, 131→Report, 40→Alert, 22→getVersion, 23→getState, 39→setOpenRemind |
 | Siren | 5935 | 194 | DataPacket | 129→StatusChange, 131→Report, 40→Alert, 22→getVersion, 23→getState, 26→setState, 34→getSchedules, 35→setSchedules, 36→setTimeZone, 39→setMute, 41→setDuation |
-| SwitchRegister | 11039 | 153 | CommandRegister | 11→setInitState, 23→getState, 26→setState, 29→setDelay, 34→getSchedules, 35→setSchedules, 39→setDeviceAttributes, 48→DevEvent, 129→StatusChange, 130→powerReport, 131→Report |
+| [SwitchRegister](restructured/device-handlers/switch-register.js) | 11039 | 153 | CommandRegister | 11→setInitState, 23→getState, 26→setState, 29→setDelay, 34→getSchedules, 35→setSchedules, 39→setDeviceAttributes, 48→DevEvent, 129→StatusChange, 130→powerReport, 131→Report — **fully hand-transcribed**, the CommandRegister-pattern worked example (companion to `door-sensor.js`'s DataPacket-subclass example) |
 | P5029Register | 18838 | 165 | CommandRegister | 23→getState, 26→setState, 39→setAttributes, 41→setMeterAttributes, 129→StatusChange, 131→Report |
 | Finger | 20402 | 93 | DataPacket | 129→StatusChange, 131→Report, 22→getVersion, 23→getState, 26→setState |
 | PowerFailureDetector | 25229 | 104 | DataPacket | 129→StatusChange, 131→Report, 40→Alert, 22→getVersion, 39→setOption |

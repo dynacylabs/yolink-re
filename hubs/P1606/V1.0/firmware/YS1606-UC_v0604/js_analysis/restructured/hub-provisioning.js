@@ -14,7 +14,7 @@ const { simpleMD5 } = require("./crypto-utils"); // original module 25518
 const jwt = require("jsonwebtoken"); // original module 49704 - this IS the real npm `jsonwebtoken` package
 const fs = require("fs");
 const { getGpioLed } = require("./gpio-leds"); // original module 17729
-const { waitForTask } = require("./async-utils"); // original module 9144
+const { waitForTask } = require("./delay-utils"); // original module 9144
 const { System } = require("./system-info"); // original module 62984
 const { GatewayProfileRepository } = require("./gateway-profile-repository");
 
@@ -113,14 +113,82 @@ function writeEnvFile(existingContents, updates) {
 
 // ---------------- Status-LED loop (original module 37309, checkStatus) ----------------
 // Polls this same process's own local status endpoint once a second (see
-// startLoop() in app.js, run via `--loop`) and drives four GPIO-backed
-// LEDs (net/lte/stat_g/stat_r) to reflect ATE mode, firmware
+// status-loop.js's startLoop(), run via `--loop`) and drives four
+// GPIO-backed LEDs (net/lte/stat_g/stat_r) to reflect ATE mode, firmware
 // download/install progress, error state, and network/LTE connectivity.
-// Transcribed only partially in this pass - see README for what's left.
+// Hits http://127.0.0.1:1080/_internal/status - internal-diagnostics-api.js's
+// own /status route, confirming the HTTP server really does run on port
+// 1080 (see task-registrations/start-http-mqtt.js).
+
+// `bootTime` is captured once, at module load. `hasSettledState` starts
+// false and latches permanently true either once the status endpoint
+// reports no error, or once 30 seconds have passed since boot - after
+// that point the stat LEDs show a steady on/off state instead of
+// blinking, i.e. the blink pattern is specifically a "still starting up"
+// signal for the first 30 seconds, not a general error indicator.
+const bootTime = new Date();
+let hasSettledState = false;
+
+function checkStatus() {
+  return fetchStatusJSON().then(applyStatusLEDs).catch(handleStatusFetchError);
+}
+
+function fetchStatusJSON() {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 800);
+  return fetch("http://127.0.0.1:1080/_internal/status", { signal: controller.signal })
+    .then((res) => res.json())
+    .finally(() => clearTimeout(timeoutId));
+}
+
+function applyStatusLEDs(status) {
+  if (status.isInAteMode) {
+    getGpioLed("net_led").setTimer();
+    getGpioLed("lte_led").setTimer();
+    getGpioLed("stat_g_led").setTimer();
+    setTimeout(() => getGpioLed("stat_r_led").setTimer(), 300);
+    return;
+  }
+
+  if (status.upgradingState == "download") {
+    getGpioLed("stat_g_led").setTimer();
+    getGpioLed("stat_r_led").setOnOff(false);
+  } else if (status.upgradingState == "install") {
+    getGpioLed("stat_g_led").setOnOff(false);
+    getGpioLed("stat_r_led").setTimer();
+  } else {
+    if (status.error == 0 || new Date().getTime() - bootTime.getTime() > 30000) hasSettledState = true;
+    if (hasSettledState) {
+      getGpioLed("stat_g_led").setOnOff(status.error == 0);
+      getGpioLed("stat_r_led").setOnOff(status.error == 1);
+    } else {
+      getGpioLed("stat_g_led").setTimer();
+      getGpioLed("stat_r_led").setOnOff(false);
+    }
+  }
+
+  getGpioLed("lte_led").setOnOff(status.lte);
+  if (status.isInApOperator) getGpioLed("net_led").setTimer();
+  else getGpioLed("net_led").setOnOff(status.network);
+}
+
+function handleStatusFetchError(err) {
+  if (!hasSettledState && new Date().getTime() - bootTime.getTime() > 30000) hasSettledState = true;
+  getGpioLed("net_led").setOnOff(false);
+  getGpioLed("lte_led").setOnOff(false);
+  if (hasSettledState) {
+    getGpioLed("stat_g_led").setOnOff(false);
+    getGpioLed("stat_r_led").setTimer();
+  } else {
+    getGpioLed("stat_g_led").setTimer();
+    getGpioLed("stat_r_led").setOnOff(false);
+  }
+}
 
 module.exports = {
   fetchGatewayConfiguration,
   registerHub,
   checkEnv,
+  checkStatus,
   GatewayProfileRepository,
 };
