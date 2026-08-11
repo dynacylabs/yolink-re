@@ -19,9 +19,11 @@ Both are ARM Cortex-M0+, Thumb-only, so they share one Ghidra language and one
 real CMSIS-SVD file already in this repo:
 [`chips/YL09/stm32L073xZ/STM32L0x3.svd`](chips/YL09/stm32L073xZ/STM32L0x3.svd).
 
-The **ESP32 hub firmware** (P1603) and the **RK356x hub firmware** (P1606)
-are out of scope for gaia today — see "Out of scope" below for why and what
-to do instead.
+The **ESP32 hub firmware** (P1603) is closer to in-scope than it used to be —
+gaia's Ghidra now has native Xtensa support (see "Out of scope" below), but a
+real preprocessing gap remains before `load_binary` can take it the same way
+it takes the sensor `.bin`s. The **RK356x hub firmware** (P1606) is still out
+of scope for a different reason. See "Out of scope" below for both.
 
 ## Why the firmware is one flat `.bin` per sensor
 
@@ -149,18 +151,51 @@ why this version is excluded.
 
 ## Out of scope
 
-- **P1603 (ESP32 hub)**: gaia's Ghidra install
-  ([`tools/gaia/docker/Dockerfile`](tools/gaia/docker/Dockerfile)) is stock
-  Ghidra 12.1.2 with no Xtensa processor support — `list_languages`
-  will not find an ESP32/Xtensa entry. This repo already vendors the plugins
-  needed for the *manual* GUI workflow as submodules
+- **P1603 (ESP32 hub)**: **Xtensa is no longer the blocker.** Stock Ghidra
+  has shipped native Xtensa processor support for several releases now, and
+  gaia's Ghidra install
+  ([`tools/gaia/docker/Dockerfile`](tools/gaia/docker/Dockerfile)) is already
+  on `12.1.2` — `list_languages(query="Xtensa")` should find a real entry;
+  confirm the exact language ID the same way the sensor workflow above does
+  before assuming a string. Don't assume the vendored submodules
   (`tools/ghidra/processors/ghidra-xtensa`,
-  `tools/ghidra/extensions/ghidra-esp32-flash-loader`) — follow the "ESP32
-  based hub" section of [`docs/ghidra_projects.md`](docs/ghidra_projects.md)
-  instead. `reference_data/esp32.svd` and `reference_data/esp32_rom.elf` are
-  already staged in this repo for whenever a binary is loaded that way.
-  Adding Xtensa support to gaia's own container is a real (undone) extension
-  of the Dockerfile, not something to route around per-session.
+  `tools/ghidra/extensions/ghidra-esp32-flash-loader`) are still needed for
+  the processor itself — they may now only matter for the ESP32-image-aware
+  loading behavior below.
+
+  What's still genuinely unsolved: gaia's `load_binary` only takes one file
+  at one `base_address`, the same limitation already documented above for
+  the sensors — but the ESP32 app image isn't a flat memory image the way
+  the combined sensor `.bin`s are. It's a segmented image format with its
+  own header, and the segments load at scattered, non-contiguous vaddrs
+  (confirmed against this repo's own dump —
+  [`hubs/P1603/V1.0/firmware/factory_state/show_partitions.txt`](hubs/P1603/V1.0/firmware/factory_state/show_partitions.txt)
+  shows the real partition table, `ota_0` at flash offset `0x10000` is the
+  live app image; `docs/ghidra_projects.md`'s "ESP32 based hub" §Method 3 has
+  the actual segment table: paddr `0x10020`→vaddr `0x3f400020`, paddr
+  `0x35d5c`→vaddr `0x40080000`, etc. - five non-contiguous segments, not one
+  linear region). Loading `ota_0.bin` flat at a single base address the way
+  `combine_sensor_dumps.py` does for the sensors would put every symbol at
+  the wrong address. Fixing this for gaia needs one of:
+  - a preprocessing script (an ESP32 analog to
+    [`tools/scripts/firmware/combine_sensor_dumps.py`](tools/scripts/firmware/combine_sensor_dumps.py))
+    that reads the image header and either lays out a single padded flat
+    file at the segments' real vaddrs, or
+  - a per-segment loop of `create_memory_block` + a way to load raw bytes
+    into each block at its own vaddr (gaia doesn't currently expose a
+    "write bytes into an existing block from a file offset" tool - only
+    `load_binary`, which is one file/one base address, and
+    `create_memory_block`, which makes an empty region).
+
+  Neither exists yet - this is a real, undone extension (like the Xtensa
+  Dockerfile line used to be), not something to route around per-session.
+  Until it's built, the *manual* GUI workflow in the "ESP32 based hub"
+  section of [`docs/ghidra_projects.md`](docs/ghidra_projects.md) (which
+  already handles the segmented-image problem via the vendored
+  `ghidra-esp32-flash-loader`/`esp32_image_parser` plugins) is still the
+  practical path for this chip. `reference_data/esp32.svd` and
+  `reference_data/esp32_rom.elf` are already staged in this repo for
+  whenever a binary is loaded that way.
 - **P1606 (RK356x hub)**: no raw chip dump has been captured yet (see
   [`hubs/P1606/V1.0/README.md`](hubs/P1606/V1.0/README.md) — the full
   chip read is a 32 GB `rkdeveloptool rl` capture that hasn't been done). The
