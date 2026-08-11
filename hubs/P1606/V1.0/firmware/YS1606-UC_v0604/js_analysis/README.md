@@ -75,7 +75,8 @@ Real duplicate/near-duplicate findings, all kept faithfully rather than merged: 
 - Local SQLite path defaults to `/var/lib/yosmart/p1606_local.db`; log directory defaults to `/tmp/p1606`; Redis defaults to db 9.
 
 ## Next steps (not done in this pass)
-Module classification is complete - what's left is depth, not coverage:
-- Fully transcribe (rather than just catalog) any other specific device type that matters more than the others - `device-handlers/door-sensor.js` (DataPacket-subclass pattern) and `device-handlers/switch-register.js` (CommandRegister pattern) are now both fully transcribed as worked examples; the other 23 device types in `device-command-tables.md` and 24 handlers in `device-api-handler-tables.md` are still catalog-only.
-- `gw-ap-hotspot.js` and `nmcli-wrapper.js`'s OTA-adjacent shell scripts (`gw_ap.sh`) aren't in this JS bundle at all - they live elsewhere in the firmware image and haven't been located in this repo yet.
+Module classification and device-handler transcription are both complete - what's left either lives outside this JS bundle entirely, or needs physical hardware:
+- `gw-ap-hotspot.js`'s `gw_ap.sh` and `matter-app.js`'s `/usr/lib/integrations/matter/main.js` are separate files elsewhere in the firmware image (not part of `index.js`) - neither has been located/extracted into this repo yet.
+- `sqlite-storage.js`'s schema-migration `.sql` files (under an `assets/tables` directory bundled alongside the JS, not part of `index.js` itself) haven't been examined.
+- ChirpStack's generated gRPC/protobuf client code (`chirpstack-grpc-client`, `chirpstack-proto`, `chirpstack-integration-proto` placeholders throughout `restructured/`) is enormous, vendor-generated boilerplate - intentionally not hand-transcribed; only the custom code that calls it was.
 - Verify the local MQTT broker's actual network exposure against physical hardware, if available.
