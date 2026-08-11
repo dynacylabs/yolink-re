@@ -165,6 +165,15 @@ class RawCommandWritter {
     this.#buffer[i] |= bits;
     return this.byteAt(i);
   }
+  // The original bundle's writer exposes its underlying buffer as a
+  // plain public property (some encoders, e.g. p5005-register.js's
+  // setLeakSchedules, retroactively overwrite a multi-byte field at a
+  // fixed offset via `writer.buffer.writeUint16BE(...)` after the fact,
+  // which byteAt/byteOr alone - single-byte only - can't express).
+  // Exposed here as a getter rather than making #buffer public outright.
+  get buffer() {
+    return this.#buffer;
+  }
   writeInt8(v) {
     v == null ? this.writeNone() : (this.#buffer.writeInt8(v, this.#size), this.#size++);
   }

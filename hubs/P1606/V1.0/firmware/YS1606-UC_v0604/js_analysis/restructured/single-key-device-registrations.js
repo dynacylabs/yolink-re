@@ -6,7 +6,7 @@
 const { Protocol } = require("./lora-packet-codec");
 const { OutletRegister } = require("./device-handlers/outlet-register"); // module 69987, fully transcribed
 const { SwitchRegister } = require("./device-handlers/switch-register"); // module 11039, fully transcribed
-const { P5005Register } = require("./device-handlers/p5005-register"); // module 78025, cataloged in device-command-tables.md
+const { P5005Register } = require("./device-handlers/p5005-register"); // module 78025, fully transcribed
 
 function registerOutlet(decoderRegister, encoderRegister) { // original module 10426
   OutletRegister.apply(Protocol.LoraCAN, "outlet", encoderRegister, decoderRegister);
