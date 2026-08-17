@@ -1,6 +1,6 @@
 [submodule "reference_data/rkbin"]
 	path = reference_data/rkbin
-	url = https://github.com/rockchip-linux/rkbin.git
+	url = git@github.com:rockchip-linux/rkbin.git
 [submodule "tools/ghidra/processors/ghidra-xtensa"]
 	path = tools/ghidra/processors/ghidra-xtensa
 	url = git@github.com:dynacylabs/ghidra-xtensa.git
@@ -19,7 +19,7 @@
 	branch = main
 [submodule "tools/ghidra/scripts/ghidra-svd-loader"]
 	path = tools/ghidra/scripts/ghidra-svd-loader
-	url = https://github.com/dynacylabs/ghidra-svd-loader
+	url = git@github.com:dynacylabs/ghidra-svd-loader.git
 	branch = master
 [submodule "tools/esp32_image_parser"]
 	path = tools/esp32_image_parser
@@ -37,7 +37,7 @@
 	branch = main
 [submodule "tools/rkdeveloptool"]
 	path = tools/rkdeveloptool
-	url = https://github.com/rockchip-linux/rkdeveloptool.git
+	url = git@github.com:rockchip-linux/rkdeveloptool.git
 [submodule "tools/fccid_downloader"]
 	path = tools/fccid_downloader
 	url = git@github.com:dynacylabs/fccid_downloader.git
