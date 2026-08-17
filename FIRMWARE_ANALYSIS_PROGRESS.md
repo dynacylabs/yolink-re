@@ -3,7 +3,7 @@
 - **[`sensors/P0706/V1.0`](sensors/P0706/V1.0)**
 
 # In Progress
-- **[`hubs/P1603/V1.0`](hubs/P1603/V1.0)
+- [`hubs/P1603/V1.0`](hubs/P1603/V1.0)
 
 ## Not yet started
 - **[`hubs/P1603/V1.0`](hubs/P1603/V1.0)**
