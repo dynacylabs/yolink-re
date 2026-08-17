@@ -2,7 +2,7 @@
 
 Personal reverse-engineering project focused on YoLink's consumer hub/sensor ecosystem (hardware teardown, firmware extraction, and Ghidra-based static analysis). This repo consolidates and supersedes the earlier `yolink` and `yolink_re` repos.
 
-See [docs/writeup](docs/writeup/writeup.md) for the narrative writeup (a work in progress, eventually a blog post) and [docs/testing_methodology.md](docs/testing_methodology.md) for the test plan behind the hub/LoRa/MQTT behavior findings.
+See [docs/writeup.md](docs/writeup.md) for the narrative writeup (a work in progress, eventually a blog post) and [docs/testing_methodology.md](docs/testing_methodology.md) for the test plan behind the hub/LoRa/MQTT behavior findings.
 
 ## Cloning
 

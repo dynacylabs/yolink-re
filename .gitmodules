@@ -44,3 +44,6 @@
 [submodule "tools/gaia"]
 	path = tools/gaia
 	url = git@github.com:dynacylabs/gaia.git
+[submodule "tools/ghidra-esp32-flash-loader"]
+	path = tools/ghidra-esp32-flash-loader
+	url = git@github.com:dynacylabs/ghidra-esp32-flash-loader.git
